@@ -5,9 +5,12 @@ import { Injectable } from '@angular/core';
 export class HttpService {
 
     private baseUrl = 'https://automom-dev.herokuapp.com/api/'
+    headers: HttpHeaders = new HttpHeaders();
 
     constructor(private http: HttpClient) {
-
+        this.headers.append('Access-Control-Allow-Origin', '*');
+        this.headers.append('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        this.headers.append('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');  
     }
 
     /**
@@ -39,13 +42,15 @@ export class HttpService {
     httpPost(subUrl: string, body: any): Promise<any> {
         console.log('httpPost called');
         return new Promise((resolve, reject) => {
-            this.http.post(this.baseUrl + subUrl, body).subscribe((res) => {
+            this.http.post(
+                this.baseUrl + subUrl, body, {
+                headers: this.headers
+              }).subscribe((res) => {
                 resolve(res);
             }, err => {
                 reject(err.error);
             });
         })
-
     }
 
     /**
