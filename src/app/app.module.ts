@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { HttpServiceProvider } from './core/services/http/http-service';
+import { HttpService } from './core/services/http/http-service';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { HttpServiceProvider } from './core/services/http/http-service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
-  providers: [HttpServiceProvider],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import {Component }from '@angular/core'; 
-import {HttpServiceProvider }from './core/services/http/http-service'; 
+import {HttpService }from './core/services/http/http-service'; 
 
 @Component( {
   selector:'app-root', 
@@ -8,7 +8,7 @@ import {HttpServiceProvider }from './core/services/http/http-service';
 })
 export class AppComponent {
 
-  constructor(private service:HttpServiceProvider) {}
+  constructor(private service:HttpService) {}
 
   title = 'AutoMoM';
   
