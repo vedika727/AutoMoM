@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class HttpServiceProvider {
+export class HttpService {
 
     private baseUrl = ''
 
