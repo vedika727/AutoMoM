@@ -1,27 +1,23 @@
 
 /* You can add global styles to this file, and also import other style files */
-.main-content{
-    /* text-align: center; */
-    /* background-color: #6666ff; */
-}
-.main-component{
-    padding-top: 30px;
-    border: 1px solid gray;
-    margin-top: 180px;
-    width: 100%;
-    height: auto;
-}
-.login-btn{
-padding-top: 10px;
-padding-bottom: 20px;
-}
-.reg-btn{
-    padding-top: 10px;
-    padding-bottom: 20px;
-}
 .form-main-block{
     margin-bottom: 20px;
 }
 .button-block{
     text-align: center;
+}
+.left-panel{
+    background-color: black;
+    height: 694px;
+}
+.right-panel{
+    padding-top: 181px;
+}
+.img-center{
+    display: flex;
+    justify-content: center;
+    padding-top: 243px;
+}img{
+    width: 326px;
+    height: 277px;
 }
