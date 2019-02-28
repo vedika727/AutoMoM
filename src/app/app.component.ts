@@ -9,7 +9,7 @@ import {HttpService }from './core/services/http/http-service';
 export class AppComponent {
 
   constructor(private service:HttpService) {}
-
+  register = true
   title = 'AutoMoM';
   
   users(){

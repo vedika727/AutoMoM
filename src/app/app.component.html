@@ -9,27 +9,27 @@
         </div>
       </section>
     <section class="col-sm-8 right-panel">
-        <div class="container mt-3">
+        <div class="container">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home"> 
-                  <button class="btn btn-primary" (click)="registered=true">Registration</button>
+                <a [ngClass]="register?'active':''" class="nav-link" data-toggle="tab" (click)="register=true"> 
+                  Registration
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#menu1">
-                    <button class="btn btn-primary" (click)="registered=false">Login</button>
+                <a class="nav-link" [ngClass]="!register?'active':''" data-toggle="tab" (click)="register=false">
+                    Login
                 </a>
               </li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-              <div id="home" class="container tab-pane active"><br>
-                <app-login *ngIf="!registered"></app-login>
+              <div *ngIf="register" class="container tab-pane active"><br>
+                <app-register></app-register>
               </div>
-              <div id="menu1" class="container tab-pane fade"><br>
-                <app-register *ngIf="registered"></app-register>
+              <div *ngIf="!register" class="container tab-pane active"><br>
+                <app-login></app-login>
               </div>
             </div>
           </div>
