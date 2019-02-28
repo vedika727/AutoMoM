@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpService } from './core/services/http/http-service';
 import { CoreModule } from './core/core.module';
 import { MeetingPortalComponent } from './meeting-portal/meeting-portal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { MeetingPortalComponent } from './meeting-portal/meeting-portal.componen
   imports: [
     BrowserModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

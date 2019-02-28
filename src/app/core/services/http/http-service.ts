@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HttpService {
 
-    private baseUrl = 'https://jsonplaceholder.typicode.com/'
+    private baseUrl = 'https://automom-dev.herokuapp.com/api/'
 
     constructor(private http: HttpClient) {
 
@@ -38,7 +38,6 @@ export class HttpService {
      */
     httpPost(subUrl: string, body: any): Promise<any> {
         console.log('httpPost called');
-
         return new Promise((resolve, reject) => {
             this.http.post(this.baseUrl + subUrl, body).subscribe((res) => {
                 resolve(res);

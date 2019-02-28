@@ -8,8 +8,20 @@ export class AuthService {
     
   }
 
-  registerUser(data: any) {
-      this.http.httpPost("employees",data)
+  registerUser(data:any): Promise<any> {
+    return new Promise((resolve, reject) => {
+        this.http.httpPost('register', data).then((res) => {
+            resolve(res);
+        }, err => {
+            reject(err.error);
+        });
+    })
+
+}
+
+  loginUser(data: any) {
+    let subUrl="login";
+      this.http.httpPost(subUrl,data)
   }
 
 }
