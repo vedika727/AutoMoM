@@ -1,7 +1,22 @@
 <!-- main container -->
 <div class="container-fluid">
   <div class="row">
+
   <div class="col-sm-12 main-content">
+    <!-- <section class="row main-component">
+      <div class="col-sm-6 button-block">
+        <div class="col-sm-3 login-btn button-block">
+            <button class="btn btn-primary" (click)="registered=true">Registration</button>
+        </div>
+        <div class="col-sm-3 reg-btn button-block">
+            <button class="btn btn-primary" (click)="registered=false;users()">Login</button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+         <app-register *ngIf="registered"></app-register>
+         <app-login *ngIf="!registered"></app-login>
+      </div>
+    </section> -->
     <div class="row">
       <section class="col-sm-4 left-panel">
         <div class="img-center">
@@ -10,19 +25,18 @@
       </section>
     <section class="col-sm-8 right-panel">
         <div class="container mt-3">
+          
+          
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home"> 
-                  <button class="btn btn-primary" (click)="registered=true">Registration</button>
-                </a>
+                <a class="nav-link active" data-toggle="tab" href="#home">Login</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#menu1">
-                    <button class="btn btn-primary" (click)="registered=false">Login</button>
-                </a>
+                <a class="nav-link" data-toggle="tab" href="#menu1">Registration</a>
               </li>
             </ul>
+          
             <!-- Tab panes -->
             <div class="tab-content">
               <div id="home" class="container tab-pane active"><br>
@@ -34,8 +48,10 @@
             </div>
           </div>
     </section>
-  </div>  
   </div>
+    
+  </div>
+  
   </div>
 </div>
 

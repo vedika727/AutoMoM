@@ -6,14 +6,15 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HttpService } from './core/services/http/http-service';
 import { CoreModule } from './core/core.module';
-import { MeetingPortalComponent } from './meeting-portal/meeting-portal.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    MeetingPortalComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
