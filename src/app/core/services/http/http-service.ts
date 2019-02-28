@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HttpService {
 
-    private baseUrl = ''
+    private baseUrl = 'https://jsonplaceholder.typicode.com/'
 
     constructor(private http: HttpClient) {
 
@@ -20,6 +20,7 @@ export class HttpService {
         console.log('httpGet called');
         return new Promise((resolve, reject) => {
             this.http.get(this.baseUrl + subUrl).subscribe((res: any) => {
+                console.log(res)
                 resolve(res);
             }, err => {
                 reject(err);
