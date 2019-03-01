@@ -19,9 +19,13 @@ export class AuthService {
 
 }
 
-  loginUser(data: any) {
-    let subUrl="login";
-      this.http.httpPost(subUrl,data)
+  loginUser(data: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+        this.http.httpPost('login', data).then((res) => {
+            resolve(res);
+        }, err => {
+            reject(err.error);
+        });
+    })
   }
-
 }
