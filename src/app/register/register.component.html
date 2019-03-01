@@ -15,6 +15,10 @@
     <label for="confirm-pwd">Confirm Password:</label>
     <input type="password" formControlName="cnfPassword" name="confirm-pwd" class="form-control" id="confirm-pwd">
   </div>
-  <div *ngIf="(this.userForm.cnfPassword.dirty) && (this.userForm.cnfPassword.value != this.userForm.password.value)">Password does not match</div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <!-- <div *ngIf="(userForm.cnfPassword.dirty) && (userForm.cnfPassword.value != userForm.password.value)">Password does not match</div> -->
+  <div *ngIf="userForm.cnfPassword.touched && userForm.cnfPassword.errors">Passwords must match</div>
+  <div class="pt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Submit</button>
+  </div>
+  
 </form>
