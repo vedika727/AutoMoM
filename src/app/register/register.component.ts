@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegistrationDetails } from '../shared/models/register-form';
+import { RegistrationDetails } from '../shared/models/auth-model';
 import { AuthService } from '../core/services/authentication/auth';
 import { MustMatch } from '../shared/validators/must-match.validator';
 
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   registrationData: RegistrationDetails;
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registrationData = new RegistrationDetails();
-    this.registrationData.email='hbhj'
+    // this.registrationData.email='hbhj'
     console.log(this.registrationData)
   }
   ngOnInit() {

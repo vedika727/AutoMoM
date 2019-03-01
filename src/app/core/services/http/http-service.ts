@@ -31,7 +31,7 @@ export class HttpService {
         })
     }
     
-
+    
     /**
      * 
      * @param subUrl {string}

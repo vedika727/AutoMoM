@@ -3,3 +3,7 @@ export class RegistrationDetails {
     name: string;
     password: string;
 }
+export class LoginDetails { 
+    email: string;
+    password: string;
+}
