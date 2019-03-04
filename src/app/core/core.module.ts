@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpService } from './services/http/http-service';
 import { AuthService } from './services/authentication/auth';
+import { AuthGuard } from './guards/authGuard.guard';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import { AuthService } from './services/authentication/auth';
     ],
     providers: [
         HttpService,
-        AuthService
+        AuthService,
+        AuthGuard
     ],
 })
 export class CoreModule {

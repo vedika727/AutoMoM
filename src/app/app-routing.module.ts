@@ -4,6 +4,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { AuthGuard } from './core/guards/authGuard.guard';
+import { CreateMeetingRequestComponent } from './create-meeting-request/create-meeting-request.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/authentication', pathMatch: 'full' },
@@ -13,7 +15,13 @@ const routes: Routes = [
       {path:'register',component: RegisterComponent}
     ]
   },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent,
+  // , canActivate: [AuthGuard] 
+  children: [
+    { path: '', redirectTo: 'meetingRequest', pathMatch: 'full'},
+    { path: 'meetingRequest', component: CreateMeetingRequestComponent}
+  ]
+},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

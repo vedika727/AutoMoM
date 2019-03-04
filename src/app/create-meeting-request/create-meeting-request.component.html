@@ -1,0 +1,38 @@
+<form class="form-group justify-content-center w-60 mt-5 meeting-request-form" [formGroup]="meetingRequest"
+  (ngSubmit)="onSubmit()">
+  <div class="form-group d-flex flex-row">
+    <label for="agenda" class="mr-5 w-50">Agenda:</label>
+    <input type="text" formControlName="agenda" name="agenda" class="form-control" id="agenda" required>
+  </div>
+  <!-- <div class="alert alert-danger" *ngIf="meetingRequest.agenda.touched && meetingRequest.agenda.errors">
+    Agenda is required
+  </div> -->
+  <div class="form-group d-flex flex-row">
+    <label for="orgEmail" class="mr-5 w-50">Organizer Email:</label>
+    <input type="email" formControlName="orgEmail" name="orgEmail" class="form-control" id="orgEmail" required>
+  </div>
+  <div class="alert alert-danger" *ngIf="meetingRequest.orgEmail.touched && meetingRequest.orgEmail.errors">
+    <div *ngIf="meetingRequest.orgEmail.errors.required">
+      Organizer's Email is required
+    </div>
+    <!-- <div *ngIf="meetingRequest.orgEmail.errors.pattern && !meetingRequest.orgEmail.errors.required">
+      Email should be of format (xxxx@capco.com)
+    </div> -->
+  </div>
+  <div class="form-group d-flex flex-row">
+    <label for="parEmail" class="mr-5 w-50">Participant Email:</label>
+    <input type="email" formControlName="parEmail" name="parEmail" class="form-control" id="parEmail" required>
+    <button>Add Participant</button>
+  </div>
+  <div class="alert alert-danger" *ngIf="meetingRequest.parEmail.touched && meetingRequest.parEmail.errors">
+    <div *ngIf="meetingRequest.parEmail.errors.required">
+        Participant's Email is required
+    </div>
+  </div>
+  <div class="pt-3">
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Submit</button>
+  </div>
+  <!-- <div *ngIf="successfullyRegistered" class="alert alert-success mt-3" role="alert">
+    You have successfully registered. Please proceed to Login.
+  </div> -->
+</form>

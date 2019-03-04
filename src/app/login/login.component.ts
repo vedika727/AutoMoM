@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
         console.log(res)
         this.router.navigate(['/dashboard']);
       }
-
     },
       (err: any) => {
         console.log(err)

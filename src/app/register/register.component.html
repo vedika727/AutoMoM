@@ -1,7 +1,7 @@
 <form class="form-group" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="name">Full Name:</label>
-    <input type="text" formControlName="name" name="name" class="form-control" id="email" required>
+    <input type="text" formControlName="name" name="name" class="form-control" id="name" required>
   </div>
   <div class="alert alert-danger" *ngIf="userForm.name.touched && userForm.name.errors">
     Name is required
