@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
       },
     (err:any)=>{
       console.log(err)  
+      this.successfullyRegistered = false
     })
   }
   closeAlert() {

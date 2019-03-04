@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginDetails } from '../shared/models/auth-model';
 import { AuthService } from '../core/services/authentication/auth';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('alert') alert: ElementRef;
   loginForm: FormGroup;
   userForm: any;
   loginData: LoginDetails;
@@ -48,6 +49,8 @@ export class LoginComponent implements OnInit {
         this.loginError=true
       })
   }
-
+  closeAlert(){
+    this.alert.nativeElement.classList.remove('show');
+  }
 
 }

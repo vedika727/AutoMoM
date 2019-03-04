@@ -11,8 +11,8 @@
           <div class="container form-wrapper">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a [ngClass]="router.url == '/authentication'? 'nav-link active':'nav-link'" [routerLink]="['register']" data-toggle="tab">
+              <li class="nav-item" (click)="getURL()">
+                <a [ngClass]="(router.url == '/authentication' || router.url == '/authentication/register') ? 'nav-link active':'nav-link'" [routerLink]="['register']" data-toggle="tab">
                   Registration
                 </a>
               </li>
