@@ -62,11 +62,9 @@ export class HttpService {
      */
     httpPut(subUrl: string, body: any) {
         console.log('httpPut called');
-
         return new Promise((resolve, reject) => {
             this.http.put('url', {}).subscribe((res: any) => {
                 resolve(res);
-
             }, err => {
                 reject(err);
             });

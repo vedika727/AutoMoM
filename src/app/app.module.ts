@@ -8,6 +8,7 @@ import { HttpService } from './core/services/http/http-service';
 import { CoreModule } from './core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+// import {AppRoutingModule} from './app-routing/app-routing.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpClientModule,
     CoreModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    // AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
