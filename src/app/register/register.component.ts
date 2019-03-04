@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationDetails } from '../shared/models/auth-model';
 import { AuthService } from '../core/services/authentication/auth';
@@ -10,39 +10,43 @@ import { MustMatch } from '../shared/validators/must-match.validator';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  @ViewChild('alert') alert: ElementRef;
   registerForm: FormGroup;
   userForm: any;
   registrationData: RegistrationDetails;
+  successfullyRegistered: boolean = false;
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registrationData = new RegistrationDetails();
-    // this.registrationData.email='hbhj'
-    console.log(this.registrationData)
   }
   ngOnInit() {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(40)]],
       email: ['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@capco.com$")]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      cnfPassword: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, 
+        // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
+      ]],
+      cnfPassword: ['', Validators.required]
     }, 
     {
       validator: MustMatch('password', 'cnfPassword')
   }
   );
     this.userForm=this.registerForm.controls
-    console.log(this.registerForm)
+    console.log(this.userForm)
   }
   onSubmit() {
     this.registrationData.email=this.userForm.email.value;
     this.registrationData.name=this.userForm.name.value;
     this.registrationData.password=this.userForm.cnfPassword.value;
-    console.log(this.registrationData)
     this.authService.registerUser(this.registrationData).then((res:any)=>{
       console.log(res)
+      this.successfullyRegistered = true
       },
     (err:any)=>{
       console.log(err)  
     })
+  }
+  closeAlert() {
+    this.alert.nativeElement.classList.remove('show');
   }
 }
