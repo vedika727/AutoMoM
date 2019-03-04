@@ -20,4 +20,7 @@ export class AuthenticationComponent implements OnInit {
     console.log("router url:",this.router.url)
   }
 
+  getURL(){
+    console.log(this.router.url)
+  }
 }

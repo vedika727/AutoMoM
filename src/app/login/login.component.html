@@ -20,6 +20,11 @@
   <div class="pt-3">
     <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
   </div>
-  <div class="alert alert-danger mt-3" *ngIf="loginError">Username or password is incorrect</div>
 
+  <div #alert *ngIf="loginError" class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    Username or password is incorrect
+  </div>
 </form>

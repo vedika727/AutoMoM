@@ -14,7 +14,7 @@
     <div *ngIf="userForm.email.errors.required">
       Email is required
     </div>
-    <div *ngIf="userForm.email.errors.pattern">
+    <div *ngIf="userForm.email.errors.pattern && !userForm.email.errors.required">
       Email should be of format (xxxx@capco.com)
     </div>
   </div>
@@ -26,7 +26,7 @@
     <div *ngIf="userForm.password.errors.required">
       Password is required
     </div>
-    <div *ngIf="userForm.password.errors.pattern">
+    <div *ngIf="userForm.password.errors.pattern && !userForm.password.errors.required">
       Password must contain alphanumeric, special char, Upper case letter, number and length of password should be min
       eight characters
     </div>
@@ -39,7 +39,7 @@
   <!-- <div *ngIf="(userForm.cnfPassword.dirty) && (userForm.cnfPassword.value != userForm.password.value)">Password does not match</div> -->
   <div class="alert alert-danger" *ngIf="userForm.cnfPassword.touched && userForm.cnfPassword.errors">
     <div *ngIf="userForm.cnfPassword.errors.required">Confirm Password is required</div>
-    <div *ngIf="userForm.cnfPassword.errors.mustMatch">Passwords must match</div>
+    <div *ngIf="userForm.cnfPassword.errors.mustMatch && !userForm.cnfPassword.errors.required">Passwords must match</div>
   </div>
   <div class="pt-3">
     <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Submit</button>
