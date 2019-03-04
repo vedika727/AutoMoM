@@ -8,8 +8,14 @@ import { HttpService } from './core/services/http/http-service';
 import { CoreModule } from './core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import {AppRoutingModule} from './app-routing/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
+const appRoutes: Routes = [
+  // {path: 'home', component: AppComponent},
+  {path: 'dashboard', component: DashboardComponent}
+];
 
 @NgModule({
   declarations: [
@@ -17,6 +23,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
+    AuthenticationComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +31,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
-    // AppRoutingModule
+    AppRoutingModule ,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

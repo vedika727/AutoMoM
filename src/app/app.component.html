@@ -1,46 +1,7 @@
 <!-- main container -->
 <div class="container-fluid">
-  <div class="row">
-
-  <div class="col-sm-12 main-content">
-    <div class="row">
-      <section class="col-sm-4 left-panel">
-        <div class="img-center">
-            <img src="logo.jpg" alt="" >
-        </div>
-      </section>
-    <section class="col-sm-8 right-panel">
-        <div class="container form-wrapper">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a [ngClass]="register?'active':''" class="nav-link" data-toggle="tab" (click)="register=true"> 
-                  Registration
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [ngClass]="!register?'active':''" data-toggle="tab" (click)="register=false">
-                    Login
-                </a>
-              </li>
-            </ul>
-          
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <div *ngIf="register" class="container tab-pane active"><br>
-                <app-register></app-register>
-              </div>
-              <div *ngIf="!register" class="container tab-pane active"><br>
-                <app-login></app-login>
-              </div>
-            </div>
-          </div>
-    </section>
-  </div>
-    
-  </div>
-  
-  </div>
+    <router-outlet></router-outlet>
 </div>
+
 
 
