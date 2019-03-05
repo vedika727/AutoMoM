@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HttpService {
 
-    private baseUrl = 'https://automom-dev.herokuapp.com/api/'
+    private baseUrl = 'https://automom-dev.herokuapp.com/'
     headers: HttpHeaders = new HttpHeaders();
 
     constructor(private http: HttpClient) {

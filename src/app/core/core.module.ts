@@ -1,6 +1,8 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpService } from './services/http/http-service';
 import { AuthService } from './services/authentication/auth';
+import { MeetingService } from "src/app/core/services/meeting-request/meeting-req";
+
 
 
 @NgModule({
@@ -9,7 +11,8 @@ import { AuthService } from './services/authentication/auth';
     ],
     providers: [
         HttpService,
-        AuthService
+        AuthService,
+        MeetingService
     ],
 })
 export class CoreModule {

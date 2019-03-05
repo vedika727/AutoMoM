@@ -7,3 +7,6 @@ export class LoginDetails {
     email: string;
     password: string;
 }
+export class IdDetails{
+    email: string;
+}

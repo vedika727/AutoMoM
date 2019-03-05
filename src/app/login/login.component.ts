@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   userForm: any;
   loginData: LoginDetails;
   loginError: boolean =false;
+  // private emailId : string = '';
+  // private password : string = '';
+
 
   constructor(
     private fb: FormBuilder,

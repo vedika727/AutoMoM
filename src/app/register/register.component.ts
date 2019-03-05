@@ -21,7 +21,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(40)]],
-      email: ['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@capco.com$")]],
+      email: ['', [Validators.required, 
+        // Validators.pattern("[a-z0-9._%+-]+@capco.com$")
+      ]],
       password: ['', [Validators.required, 
         // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
       ]],
@@ -33,6 +35,7 @@ export class RegisterComponent implements OnInit {
   );
     this.userForm=this.registerForm.controls
     console.log(this.userForm)
+
   }
   onSubmit() {
     this.registrationData.email=this.userForm.email.value;
