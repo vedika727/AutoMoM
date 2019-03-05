@@ -15,9 +15,9 @@ export class CreateMeetingRequestComponent implements OnInit {
   selectedDate: any;
   todaysDate: any;
   isCollapsed:boolean = false;
-  emailArr: any;
+  emailArr: any=[];
   constructor(private fb: FormBuilder) {
-    this.emailArr=new Set();
+    // this.emailArr=new Set();
     this.todaysDate = new Date().toISOString();
     this.todaysDate = this.todaysDate.split('T');
     this.selectedDate = this.todaysDate[0]
@@ -46,7 +46,14 @@ export class CreateMeetingRequestComponent implements OnInit {
   }
 
   addParticipant(email) {
-    this.emailArr.add(email)
+    debugger
+    this.emailArr.push(email)
+    console.log(this.emailArr)
+  }
+
+  removeParticipant(email){
+    this.emailArr.pop(email)
+    console.log(this.emailArr)
   }
   onSubmit(){
     console.log("onSubmit called")
