@@ -11,7 +11,7 @@
       <!-- show date -->
       <div>
         <h1 class="up-meeting">Upcoming Meetings</h1>
-        <h2 class="date">({{dateNowISO | date: format}})</h2>
+        <h2 class="date">{{dateNowISO | date: format}}</h2>
       </div>
       <!-- accordion start -->
       <div id="accordion" class="acc-block">
@@ -33,40 +33,37 @@
       <!-- card block start -->
       <div class="container-fluid">
           <div class="row">
-              <div class="col-md-6 col-xl-6 main-card" *ngFor="let fff of myArray">
+              <div class="col-sm-6 main-card" *ngFor="let fff of myArray">
                 <div class="card">
                   <div class="card-body card-block">
                     <!-- <h5 class="card-title">{{fff.Meeting}}</h5>
                     <p class="card-text">{{fff.subject}}</p>
                     <a href="#" class="btn btn-primary">join</a> -->
                     <div class="row">
-                    <div class="col-md-2 col-xl-2 icon">
+                    <div class="col-sm-2 icon">
                         <i class="fa fa-address-card-o" style="font-size:48px;color:black;"></i>
                     </div>
-                    <div class="col-md-5 col-lg-5">
+                    <div class="col-sm-5">
                         <h2 class="font">{{fff.Meeting}}</h2>
                         <h1 class="heading">{{fff.subject}}</h1>
                     </div>
-                    <div class="col-md-5 col-xl-5">
+                    <div class="col-sm-4">
                         <div class="row">
-                            <div class="col-md-12 col-xl-12">
-                                <button type="button" class="btn btn-info">Create Virtual Room</button>
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-info join-btn1">Create Virtual room</button>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 col-xl-6">
-                                    <button type="button" class="btn btn-success">Edit</button>
-                                </div>
-                                <div class="col-md-6 col-xl-6">
-                                    <button type="button" class="btn btn-danger">Cancel</button>
-                                </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-success join-btn">Edit</button>
                             </div>
-                            
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-danger join-btn">Cancel</button>
+                            </div>
                           </div>
                     </div>
                     <div class="card-time">Time : {{fff.to}}-{{fff.from}}</div>
                     </div>
                   </div>
-                </div>
+                </div>  
               </div>
             </div>
     </div>
