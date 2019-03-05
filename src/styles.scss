@@ -61,11 +61,14 @@
     padding-top: 23px;
 }
 .card-block{
+    // 
     background-color: #626ed4;
-    margin-top: 30px;
     border: 2px solid #626ed4; 
     border-radius: 4px;
     padding: 7px;
+}
+.main-card{
+    margin-top: 30px;
 }
 .font{
     font-size: 14px;
@@ -73,7 +76,9 @@
 }
 .icon{
     background-color: #7984da;
-    padding: 5px;
+    padding-top: 18px;
+    padding-bottom: 15px;
+    text-align: center;
 }
 .img-icon{
     width: 30px;
@@ -91,6 +96,7 @@
 .card-time{
     color: #a4b7e8;
     padding-top: 10px;
+    padding-left: 4%;
 }
 .join-meeting{
     padding-left: 1px;
@@ -100,5 +106,5 @@
     margin-top: 10px;
 }
 .join-btn1{
-    width: 205px;
+    width: 195px;
 }
