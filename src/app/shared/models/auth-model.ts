@@ -1,6 +1,7 @@
 export class RegistrationDetails {
+    firstName: string;
+    lastName: string;
     email: string;
-    name: string;
     password: string;
 }
 export class LoginDetails { 
