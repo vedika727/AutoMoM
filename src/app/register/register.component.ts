@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit() {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(40)]],
+      fname: ['', [Validators.required, Validators.maxLength(20)]],
+      lname: ['', [Validators.required, Validators.maxLength(20)]],
       email: ['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@capco.com$")]],
       password: ['', [Validators.required, 
         // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
@@ -36,13 +37,16 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     this.registrationData.email=this.userForm.email.value;
-    this.registrationData.name=this.userForm.name.value;
+    this.registrationData.firstName=this.userForm.fname.value;
+    this.registrationData.lastName=this.userForm.lname.value;
     this.registrationData.password=this.userForm.cnfPassword.value;
     this.authService.registerUser(this.registrationData).then((res:any)=>{
       console.log(res)
+      debugger
       this.successfullyRegistered = true
       },
     (err:any)=>{
+      debugger
       console.log(err)  
       this.successfullyRegistered = false
     })
