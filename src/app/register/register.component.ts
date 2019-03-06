@@ -23,9 +23,7 @@ export class RegisterComponent implements OnInit {
       fname: ['', [Validators.required, Validators.maxLength(20)]],
       lname: ['', [Validators.required, Validators.maxLength(20)]],
       email: ['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@capco.com$")]],
-      password: ['', [Validators.required, 
-        // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
-      ]],
+      password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       cnfPassword: ['', Validators.required]
     }, 
     {
@@ -34,6 +32,7 @@ export class RegisterComponent implements OnInit {
   );
     this.userForm=this.registerForm.controls
     console.log(this.userForm)
+
   }
   onSubmit() {
     this.registrationData.email=this.userForm.email.value;

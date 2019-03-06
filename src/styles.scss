@@ -1,4 +1,11 @@
 
+// Resetters
+.p-none {
+    padding: 0px !important;
+}
+.m-none {
+    maring: 0px !important;
+}
 /* You can add global styles to this file, and also import other style files */
 .form-main-block{
     margin-bottom: 20px;
@@ -96,15 +103,23 @@
 .card-time{
     color: #a4b7e8;
     padding-top: 10px;
-    padding-left: 4%;
+    padding-left: 25%;
 }
 .join-meeting{
-    padding-left: 1px;
-}
-.join-btn{
-    width: 95px;
-    margin-top: 10px;
+    // padding-left: 1px;
 }
 .join-btn1{
-    width: 195px;
+    // width: 195px;
+    display: flex;
+    justify-content: center;
+}
+.edit-btn{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+.cancel-btn{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
 }

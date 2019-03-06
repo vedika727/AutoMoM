@@ -16,6 +16,19 @@ export class LoginComponent implements OnInit {
   userForm: any;
   loginData: LoginDetails;
   loginError: boolean =false;
+  // private emailId : string = '';
+  // private password : string = '';
+  // emailID:string = this.loginData.email; 
+  // password: string = this.loginData.password;
+  response : any;
+
+  // value = JSON.stringify(value);
+  // Create item:
+  // let myObj = { name: 'Skip', breed: 'Labrador' };
+  // localStorage.setItem(key, JSON.stringify(myObj));
+  
+  // // Read item:
+  // let item = JSON.parse(localStorage.getItem(key));
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +44,7 @@ export class LoginComponent implements OnInit {
     });
     this.userForm = this.loginForm.controls
     console.log(this.loginForm)
+    sessionStorage.clear();
   }
 
   login() {
@@ -39,7 +53,9 @@ export class LoginComponent implements OnInit {
     console.log(this.loginData)
     this.authService.loginUser(this.loginData).then((res: any) => {
       if (res) {
-        console.log(res)
+        console.log(res.token);
+        sessionStorage.setItem('emailID', this.loginData.email);
+        sessionStorage.setItem('token', res.token);
         this.router.navigate(['/dashboard']);
       }
     },
