@@ -32,7 +32,8 @@ export class CreateMeetingRequestComponent implements OnInit {
       // date: ['', Validators.required],
       dateInput: ['', Validators.required],
       stime: ['', Validators.required],
-      etime: ['', Validators.required]
+      etime: ['', Validators.required],
+      location: ['', Validators.required]
     }
     );
     console.log("meeting request", this.meetingRequest)
@@ -46,7 +47,7 @@ export class CreateMeetingRequestComponent implements OnInit {
   }
 
   addParticipant(email) {
-    debugger
+    this.request.parEmail.reset();
     this.emailArr.push(email)
     console.log(this.emailArr)
   }
