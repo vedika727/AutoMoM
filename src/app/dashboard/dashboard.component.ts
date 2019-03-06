@@ -10,26 +10,12 @@ import { IdDetails } from '../shared/models/auth-model';
 export class DashboardComponent implements OnInit {
   emailData : IdDetails;
   loginError: boolean = false;
+  data : Array<Object>;
   formatsDateTest: string[] = [
     'dd/MM/yyyy',
     ];
     dateNow : Date = new Date();
     dateNowISO = this.dateNow.toISOString();
-
-    public myArray : Array<Object> = [
-      {
-        subject: "Scrum Meeting", Meeting: 'Meeting 1', to:'23 jan 2019',from : '28 feb 2019'
-      },
-      {
-        subject: "project Meeting", Meeting: 'Meeting 2',to:'23 jan 2019',from : '28 feb 2019'
-      },
-      {
-        subject: "AutoMoM Meeting", Meeting: 'Meeting 3',to:'23 jan 2019',from : '28 feb 2019'
-      },
-      {
-        subject: "daily standup Meeting", Meeting: 'Meeting 4',to:'23 jan 2019',from : '28 feb 2019'
-      },
-  ];
 
   constructor(public meetService: MeetingService) {
     this.emailData = new IdDetails();
@@ -39,12 +25,12 @@ export class DashboardComponent implements OnInit {
      this.getMeeting();
   }
   getMeeting(){
-    // this.email = this.emailData;
     this.emailData.email = 'test@gmail.com';
-    console.log(this.emailData.email);
+    console.log(this.emailData);
     this.meetService.getData(this.emailData).then((res: any) => {
       if (res) {
-        console.log(res);
+         this.data = res;
+         console.log(this.data);
       }
     },
       (err: any) => {
