@@ -57,5 +57,8 @@ export class DashboardComponent implements OnInit {
     this.auth.isUserAuthenticated = false;
     this.router.navigate(['/authentication/register'])
   }
+  cancel(){
+    
+  }
 
 }
