@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { MeetingService } from '../core/services/meeting-request/meeting-req';
 import { IdDetails } from '../shared/models/auth-model';
 import { AuthService } from '../core/services/authentication/auth';
@@ -13,22 +13,26 @@ export class DashboardComponent implements OnInit {
   emailData : IdDetails;
   loginError: boolean = false;
   data : Array<Object>;
-  participantsData : Array<Object>;
+  participantEmail : Array<Object>;
+  participantEmailModel : any;
+  @Input() public user;
   formatsDateTest: string[] = [
     'dd/MM/yyyy',
     ];
     dateNow : Date = new Date();
     dateNowISO = this.dateNow.toISOString();
 
-  constructor(public meetService: MeetingService, private auth:AuthService, private router: Router) {
+  constructor(public meetService: MeetingService, private auth:AuthService,
+  private router: Router,) {
     this.emailData = new IdDetails();
    }
 
   ngOnInit() { 
      this.getMeeting();
+     console.log(this.data);
   }
   getMeeting(){
-    this.emailData.email = 'test@gmail.com';
+    this.emailData.email = sessionStorage.getItem('emailID');
     console.log(this.emailData);
     this.meetService.getData(this.emailData).then((res: any) => {
       if (res) {
@@ -42,19 +46,13 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  participants(){
-    // for(let i=0;i<this.data.length;i++)
-    // {
-    //   this.participants = this.data[i].participantEmail;
-    //     this.participantsData.push(this.participants);
-    //         console.log(this.participantsData)
-    // }
+  participants(modeldata){
+        console.log(modeldata);
+        this.participantEmailModel = modeldata;
   }
   
   logout() {
     this.auth.isUserAuthenticated = false;
     this.router.navigate(['/authentication/register'])
   }
-  
- 
 }

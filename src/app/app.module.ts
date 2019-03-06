@@ -39,6 +39,6 @@ const appRoutes: Routes = [
     NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
-
-    <nav class="navbar navbar-expand-sm bg-color d-flex">
+  <nav class="navbar navbar-expand-sm bg-color d-flex">
         <ul class="navbar-nav nav-content">
           <li class="nav-item active col-6">
             <a class="nav-link" href="#">
@@ -67,37 +66,18 @@
                           </div>
                     </div>
                     <div class="row">
-                      <div class="col-sm-12">
+                      <div class="col-sm-4">
                           <div class="card-time float-left">Date : 11 May 2019</div>
                       </div>
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
                           <div class="card-time">Time : 2:30 AM</div>  
                       </div>
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
                           <div class="card-time">
-                              <button type="button" class="btn btn-primary" (click)="participants(data)" data-toggle="modal" data-target="#exampleModal">
+                              <button type="button" class="btn btn-primary" (click)="participants(meetingData)" data-toggle="modal" data-target="#exampleModal">
                                   See Participants -> 
                                 </button>
-                              </div>  
-                      </div>
-                      <!-- Modal -->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Participants Invited</h5>
-                            </div>
-                            <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item active">{{data.participantEmail}}</li>
-                                <li class="list-group-item">{{data.participantEmail}}</li>
-                                <li class="list-group-item">Morbi leo risus</li>
-                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
-                            </ul>  
-                            </div>
-                          </div>
-                        </div>
+                      </div>  
                       </div>
                     </div>
                     </div>
@@ -106,3 +86,24 @@
               </div>
             </div>
     </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Participants Invited</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <ul class="list-group" *ngFor="let modelData of participantEmailModel.participantEmail">
+                    <li class="list-group-item">{{modelData}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
