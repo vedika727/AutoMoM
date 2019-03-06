@@ -38,5 +38,11 @@ export class DashboardComponent implements OnInit {
         this.loginError=true
       })
   }
+  
+  logout() {
+    this.auth.isUserAuthenticated = false;
+    this.router.navigate(['/authentication/register'])
+  }
+  
  
 }

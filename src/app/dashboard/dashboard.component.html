@@ -1,12 +1,15 @@
 
-    <nav class="navbar navbar-expand-sm bg-color">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
+    <nav class="navbar navbar-expand-sm bg-color d-flex">
+        <ul class="navbar-nav nav-content">
+          <li class="nav-item active col-6">
             <a class="nav-link" href="#">
               <header>
                   <h1 class="capcologo">CAPCO</h1>
               </header>
             </a>
+          </li>
+          <li class="logout justify-content-end col-6">
+            <a class="nav-link" href="" (click)="logout()">Logout</a>
           </li>
         </ul>
       </nav>
@@ -23,16 +26,14 @@
       <div id="accordion" class="acc-block">
         <div class="card">
           <div class="card-header" id="headingThree">
-            <h5 class="mb-0 create-meeting">
-              <button class="btn btn-link collapsed" id="" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Create Meeting Request +  
+            <h5 class="mb-0">
+              <button class="btn btn-primary collapsed create-meeting" data-toggle="collapse" data-target="#collapseThree" [routerLink]=" ['meetingRequest'] " aria-expanded="false" aria-controls="collapseThree">
+                <img src="../../assets/svg-icons/plus.svg" class="add-icon mr-2"/>Create Meeting Request
               </button>
             </h5>
           </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-            <div class="card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
+          <div id="collapseThree" class="collapse justify-content-center" aria-labelledby="headingThree" data-parent="#accordion">
+            <router-outlet></router-outlet>
           </div>
         </div>
       </div>

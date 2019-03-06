@@ -37,6 +37,9 @@
 }
 
 ///*****************dashboard*************************///
+.align-center{
+    align-self: center
+}
 .capcologo{
     width: 100%;
     height: auto;
@@ -44,6 +47,13 @@
 }
 .create-meeting{
     font-size: 20px;
+}
+.nav-content {
+    width: 100%;
+}
+.logout {
+    text-align-last: end;
+    align-self: center
 }
 .up-meeting{
     color : #343a40;

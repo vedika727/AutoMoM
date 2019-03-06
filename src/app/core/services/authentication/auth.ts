@@ -3,6 +3,7 @@ import { HttpService } from '../http/http-service';
 
 @Injectable()
 export class AuthService {
+    isUserAuthenticated: boolean;
 
   constructor(private http: HttpService) {
     
@@ -13,6 +14,7 @@ export class AuthService {
         this.http.httpPost('api/register', data).then((res) => {
             resolve(res);
         }, err => {
+            this.isUserAuthenticated = false;
             reject(err.error);
         });
     })

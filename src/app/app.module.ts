@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { CreateMeetingRequestComponent } from './create-meeting-request/create-meeting-request.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   // {path: 'home', component: AppComponent},
@@ -24,6 +26,7 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardComponent,
     AuthenticationComponent,
+    CreateMeetingRequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule ,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

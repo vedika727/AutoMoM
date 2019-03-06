@@ -12,7 +12,7 @@ import { MeetingService } from "src/app/core/services/meeting-request/meeting-re
     providers: [
         HttpService,
         AuthService,
-        MeetingService
+        MeetingService,
     ],
 })
 export class CoreModule {
