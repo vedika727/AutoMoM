@@ -16,8 +16,8 @@
     <div class="form-group row">
         <div class="col-lg-4"><label for="Date" class="mr-5">Date:</label></div>
         <div class="row col-lg-7">
-            <div class="col-sm-11"><input class="form-control" placeholder="yyyy-mm-dd" [value]="selectedDate"
-                    formControlName="dateInput" name="dateInput" id="dateInput" required></div>
+            <div class="col-sm-11"><input class="form-control" placeholder="yyyy-mm-dd" formControlName="dateInput"
+                    name="dateInput" id="dateInput" required></div>
             <div class="col-sm-1 row">
                 <div class="col-md-10">
                     <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
@@ -26,7 +26,7 @@
                     </button>
                     <div id="collapseExample" [ngbCollapse]="!isCollapsed" class="col-md-2">
                         <ngb-datepicker #dp class="calendar" (navigate)="date = $event.next"
-                            (select)="editDate=$event.day; onDateSelect($event)" ></ngb-datepicker>
+                            (select)="editDate=$event.day; onDateSelect($event)"></ngb-datepicker>
                     </div>
                 </div>
             </div>
@@ -64,17 +64,20 @@
             <div *ngIf="emailArr.length!=0">
                 <div class="row participant-email" *ngFor="let email of emailArr; let i=index">
                     <div class="col-md-8 align-center">{{email}}</div>
-                    <div class="col-md-4"><button class="btn btn-outline-danger" (click)="removeParticipant(email); $event.preventDefault()"><i
+                    <div class="col-md-4"><button class="btn btn-outline-danger"
+                            (click)="removeParticipant(email); $event.preventDefault()"><i
                                 class="fa fa-trash-o delete-icon" aria-hidden="true"></i></button></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-7 col-lg-6">
-                    <input type="email" formControlName="parEmail"
-                        placeholder="Participant's Email" name="parEmail" class="form-control" id="parEmail" required>
+                    <input type="email" formControlName="parEmail" placeholder="Participant's Email" name="parEmail"
+                        class="form-control" id="parEmail" required>
                 </div>
                 <div class="col-xl-5 col-lg-6">
-                    <button class="btn btn-primary" [disabled]='!meetingRequest.value.parEmail' (click)="addParticipant(request.parEmail.value); $event.preventDefault()">Add Participant</button>
+                    <button class="btn btn-primary" [disabled]='!meetingRequest.value.parEmail'
+                        (click)="addParticipant(request.parEmail.value); $event.preventDefault()">Add
+                        Participant</button>
                 </div>
             </div>
         </div>

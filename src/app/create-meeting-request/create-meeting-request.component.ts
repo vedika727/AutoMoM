@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap'
+import { MeetingService } from '../core/services/meeting-request/meeting-req';
+import { CreateMeetingPostData } from '../shared/models/meeting.model';
 
 @Component({
   selector: 'app-create-meeting-request',
@@ -16,8 +18,10 @@ export class CreateMeetingRequestComponent implements OnInit {
   todaysDate: any;
   isCollapsed:boolean = false;
   emailArr: any=[];
-  constructor(private fb: FormBuilder) {
+  createMeetingData: CreateMeetingPostData
+  constructor(private fb: FormBuilder, private meetingService: MeetingService) {
     // this.emailArr=new Set();
+    this.createMeetingData = new CreateMeetingPostData();
     this.todaysDate = new Date().toISOString();
     this.todaysDate = this.todaysDate.split('T');
     this.selectedDate = this.todaysDate[0]
@@ -28,9 +32,8 @@ export class CreateMeetingRequestComponent implements OnInit {
     this.meetingRequest = this.fb.group({
       agenda: ['', [Validators.required, Validators.maxLength(40)]],
       orgEmail: ['',[Validators.required]],
-      parEmail: ['',[Validators.required]],
-      // date: ['', Validators.required],
-      dateInput: ['', Validators.required],
+      parEmail: [''],
+      dateInput: [this.selectedDate, Validators.required],
       stime: ['', Validators.required],
       etime: ['', Validators.required],
       location: ['', Validators.required]
@@ -43,7 +46,10 @@ export class CreateMeetingRequestComponent implements OnInit {
   onDateSelect(event){
     console.log(event)
     this.selectedDate = (event.year + "-"  + event.month + "-" + event.day);
-    console.log
+    this.meetingRequest.controls["dateInput"].setValue(
+      this.selectedDate
+    );
+    console.log(this.meetingRequest.value.dateInput)
   }
 
   addParticipant(email) {
@@ -57,7 +63,46 @@ export class CreateMeetingRequestComponent implements OnInit {
     console.log(this.emailArr)
   }
   onSubmit(){
-    console.log("onSubmit called")
+    console.log(this.meetingRequest)
+
+    const data = 
+    {
+      "participantEmail": [
+        "noopur.singh@capco.com"
+      ],
+      "organizerEmail": "pranjal.nartam@capco.com",
+      "meetingDate": "2019-02-28",
+      "startTime": "05:05:05",
+      "endTime": "10:10:10",
+      "agenda": "r u ok?",
+      "location": "Skype"
+    }  
+    const endTime = (this.meetingRequest.value.etime.hour+":"+this.meetingRequest.value.etime.minute+":"+this.meetingRequest.value.etime.second)
+    const startTime = (this.meetingRequest.value.stime.hour+":"+this.meetingRequest.value.stime.minute+":"+this.meetingRequest.value.stime.second)
+    this.createMeetingData.participantEmail = this.emailArr;
+    this.createMeetingData.organizerEmail = this.meetingRequest.value.orgEmail
+    this.createMeetingData.meetingDate = this.selectedDate;
+    this.createMeetingData.endTime = endTime;
+    this.createMeetingData.startTime = startTime;
+    this.createMeetingData.agenda = this.meetingRequest.value.agenda;
+    this.createMeetingData.location = this.meetingRequest.value.location
+    console.log(this.createMeetingData)
+    this.meetingService.postMeetingData(this.createMeetingData).then((res: any)=>{
+      console.log("meetingService",res)
+    },
+    (err: any)=>{
+      console.log("meetingService",err)
+    });
   }
+
+  // checkParticipantEmail(){
+  //   console.log(this.emailArr.length==0)
+  //   if(this.meetingRequest){
+  //     if(this.meetingRequest.value.parEmail && this.emailArr.length==0){
+  //       this.request.parEmail.setErrors({ required: true });
+  //     }
+  //   }
+    
+  // }
 
 }
