@@ -11,7 +11,7 @@ headers:HttpHeaders = new HttpHeaders();
         this.headers.append('Access-Control-Allow-Origin', '*'); 
         this.headers.append('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS'); 
         this.headers.append('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token'); 
-        this.headers.append('Authorization', 'Bearer' + ' ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzdlNDE0NTVlZWZkMzFlYzg0MzMwNTkiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiZXhwIjoxNTUyNDA0NzEyLCJpYXQiOjE1NTE3OTk5MTJ9.y2wB1Rk1VFVURAijQVhgEUO9Pb0shZMu7GKTf2QCNMU'); 
+        // this.headers.append('Authorization', 'Bearer' + ' ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzdlNDE0NTVlZWZkMzFlYzg0MzMwNTkiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiZXhwIjoxNTUyNDA0NzEyLCJpYXQiOjE1NTE3OTk5MTJ9.y2wB1Rk1VFVURAijQVhgEUO9Pb0shZMu7GKTf2QCNMU'); 
     }
 
     /**

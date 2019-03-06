@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   emailData : IdDetails;
+  // cancelMeeting : CancleMeeting;
   loginError: boolean = false;
   data : Array<Object>;
   participantEmail : Array<Object>;
-  participantEmailModel : any;
+  participantEmailModel : any = {};
   @Input() public user;
   formatsDateTest: string[] = [
     'dd/MM/yyyy',
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit {
   constructor(public meetService: MeetingService, private auth:AuthService,
   private router: Router,) {
     this.emailData = new IdDetails();
+    // this.cancelMeeting = new CancleMeeting();
    }
 
   ngOnInit() { 
@@ -45,7 +47,7 @@ export class DashboardComponent implements OnInit {
         this.loginError=true
       })
   }
-
+// model data
   participants(modeldata){
         console.log(modeldata);
         this.participantEmailModel = modeldata;
@@ -55,4 +57,5 @@ export class DashboardComponent implements OnInit {
     this.auth.isUserAuthenticated = false;
     this.router.navigate(['/authentication/register'])
   }
+
 }
