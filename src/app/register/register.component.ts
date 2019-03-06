@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   userForm: any;
   registrationData: RegistrationDetails;
   successfullyRegistered: boolean = false;
+  unsuccessfullRegistration: boolean = false;
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registrationData = new RegistrationDetails();
   }
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
     (err:any)=>{
       debugger
       console.log(err)  
-      this.successfullyRegistered = false
+      this.unsuccessfullRegistration = true
     })
   }
   closeAlert() {
