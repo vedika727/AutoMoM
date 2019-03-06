@@ -19,6 +19,7 @@ export class CreateMeetingRequestComponent implements OnInit {
   isCollapsed: boolean = false;
   emailArr: any = [];
   createMeetingData: CreateMeetingPostData
+  organizerEmail: string;
   constructor(private fb: FormBuilder, private meetingService: MeetingService) {
     // this.emailArr=new Set();
     this.createMeetingData = new CreateMeetingPostData();
@@ -26,12 +27,13 @@ export class CreateMeetingRequestComponent implements OnInit {
     this.todaysDate = this.todaysDate.split('T');
     this.selectedDate = this.todaysDate[0]
     console.log(this.selectedDate)
+    this.organizerEmail=sessionStorage.getItem('emailID');
   }
 
   ngOnInit() {
     this.meetingRequest = this.fb.group({
       agenda: ['', [Validators.required, Validators.maxLength(40)]],
-      orgEmail: ['', [Validators.required]],
+      orgEmail: [this.organizerEmail],
       parEmail: ['', this.validateParticipantEmail()],
       dateInput: [this.selectedDate, Validators.required],
       stime: ['', Validators.required],
