@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../core/services/meeting-request/meeting-req';
 import { IdDetails } from '../shared/models/auth-model';
+import { AuthService } from '../core/services/authentication/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,13 +13,14 @@ export class DashboardComponent implements OnInit {
   emailData : IdDetails;
   loginError: boolean = false;
   data : Array<Object>;
+  participantsData : Array<Object>;
   formatsDateTest: string[] = [
     'dd/MM/yyyy',
     ];
     dateNow : Date = new Date();
     dateNowISO = this.dateNow.toISOString();
 
-  constructor(public meetService: MeetingService) {
+  constructor(public meetService: MeetingService, private auth:AuthService, private router: Router) {
     this.emailData = new IdDetails();
    }
 
@@ -37,6 +40,15 @@ export class DashboardComponent implements OnInit {
         console.log(err)
         this.loginError=true
       })
+  }
+
+  participants(){
+    // for(let i=0;i<this.data.length;i++)
+    // {
+    //   this.participants = this.data[i].participantEmail;
+    //     this.participantsData.push(this.participants);
+    //         console.log(this.participantsData)
+    // }
   }
   
   logout() {
