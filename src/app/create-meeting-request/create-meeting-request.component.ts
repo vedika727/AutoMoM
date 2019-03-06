@@ -16,8 +16,8 @@ export class CreateMeetingRequestComponent implements OnInit {
   request: any;
   selectedDate: any;
   todaysDate: any;
-  isCollapsed:boolean = false;
-  emailArr: any=[];
+  isCollapsed: boolean = false;
+  emailArr: any = [];
   createMeetingData: CreateMeetingPostData
   constructor(private fb: FormBuilder, private meetingService: MeetingService) {
     // this.emailArr=new Set();
@@ -31,8 +31,8 @@ export class CreateMeetingRequestComponent implements OnInit {
   ngOnInit() {
     this.meetingRequest = this.fb.group({
       agenda: ['', [Validators.required, Validators.maxLength(40)]],
-      orgEmail: ['',[Validators.required]],
-      parEmail: [''],
+      orgEmail: ['', [Validators.required]],
+      parEmail: ['', this.validateParticipantEmail()],
       dateInput: [this.selectedDate, Validators.required],
       stime: ['', Validators.required],
       etime: ['', Validators.required],
@@ -40,12 +40,12 @@ export class CreateMeetingRequestComponent implements OnInit {
     }
     );
     console.log("meeting request", this.meetingRequest)
-    this.request=this.meetingRequest.controls
+    this.request = this.meetingRequest.controls
   }
 
-  onDateSelect(event){
+  onDateSelect(event) {
     console.log(event)
-    this.selectedDate = (event.year + "-"  + event.month + "-" + event.day);
+    this.selectedDate = (event.year + "-" + event.month + "-" + event.day);
     this.meetingRequest.controls["dateInput"].setValue(
       this.selectedDate
     );
@@ -56,16 +56,18 @@ export class CreateMeetingRequestComponent implements OnInit {
     this.request.parEmail.reset();
     this.emailArr.push(email)
     console.log(this.emailArr)
+    this.validateParticipantEmail()
   }
 
-  removeParticipant(email){
+  removeParticipant(email) {
     this.emailArr.pop(email)
     console.log(this.emailArr)
+    this.validateParticipantEmail()
   }
-  onSubmit(){
+  onSubmit() {
     console.log(this.meetingRequest)
 
-    const data = 
+    const data =
     {
       "participantEmail": [
         "noopur.singh@capco.com"
@@ -76,9 +78,9 @@ export class CreateMeetingRequestComponent implements OnInit {
       "endTime": "10:10:10",
       "agenda": "r u ok?",
       "location": "Skype"
-    }  
-    const endTime = (this.meetingRequest.value.etime.hour+":"+this.meetingRequest.value.etime.minute+":"+this.meetingRequest.value.etime.second)
-    const startTime = (this.meetingRequest.value.stime.hour+":"+this.meetingRequest.value.stime.minute+":"+this.meetingRequest.value.stime.second)
+    }
+    const endTime = (this.meetingRequest.value.etime.hour + ":" + this.meetingRequest.value.etime.minute + ":" + this.meetingRequest.value.etime.second)
+    const startTime = (this.meetingRequest.value.stime.hour + ":" + this.meetingRequest.value.stime.minute + ":" + this.meetingRequest.value.stime.second)
     this.createMeetingData.participantEmail = this.emailArr;
     this.createMeetingData.organizerEmail = this.meetingRequest.value.orgEmail
     this.createMeetingData.meetingDate = this.selectedDate;
@@ -87,22 +89,25 @@ export class CreateMeetingRequestComponent implements OnInit {
     this.createMeetingData.agenda = this.meetingRequest.value.agenda;
     this.createMeetingData.location = this.meetingRequest.value.location
     console.log(this.createMeetingData)
-    this.meetingService.postMeetingData(this.createMeetingData).then((res: any)=>{
-      console.log("meetingService",res)
+    this.meetingService.postMeetingData(this.createMeetingData).then((res: any) => {
+      console.log("meetingService", res)
     },
-    (err: any)=>{
-      console.log("meetingService",err)
-    });
+      (err: any) => {
+        console.log("meetingService", err)
+      });
   }
 
-  // checkParticipantEmail(){
-  //   console.log(this.emailArr.length==0)
-  //   if(this.meetingRequest){
-  //     if(this.meetingRequest.value.parEmail && this.emailArr.length==0){
-  //       this.request.parEmail.setErrors({ required: true });
-  //     }
-  //   }
-    
-  // }
+  validateParticipantEmail() {
+    console.log(this.emailArr.length == 0)
+    if (this.meetingRequest) {
+      if (this.emailArr.length == 0) {
+        this.request.parEmail.setErrors({ required: true });
+      }
+      else {
+        this.request.parEmail.setErrors(false);
+      }
+    }
+
+  }
 
 }
