@@ -54,10 +54,11 @@
             </div>
             <div class="col-sm-5">
               <div class="row">
-                <div class="col-sm-12 disp-cen">
-                  <button type="button" class="btn btn-info" *ngIf="!isVirtualRoomCreated">Create Virtual room</button>
+                <div class="col-sm-12 disp-cen" *ngIf="meetingData.organizerEmail == emailData.email">
+                  <button type="button" class="btn btn-info" (click)="createRoom(meetingData)" *ngIf="!isVirtualRoomCreated">Create Virtual
+                    room</button>
                   <button type="button" class="btn btn-info" *ngIf="isVirtualRoomCreated" data-toggle="modal"
-                    data-target="#acceptTokenModal">Join Virtual Room</button>
+                    data-target="#acceptTokenModal" (click)="sendDetailsToTokenModal(meetingData)">Join Virtual Room</button>
                 </div>
               </div>
               <div class="row">
