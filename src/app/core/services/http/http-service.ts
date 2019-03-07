@@ -65,9 +65,14 @@ headers:HttpHeaders = new HttpHeaders();
      * @returns Promise
      */
     httpPut(subUrl: string, body: any) {
-        console.log('httpPut called');
+        //console.log('httpPut called');
+        const token = sessionStorage.getItem('token');
         return new Promise((resolve, reject) => {
-            this.http.put('url', {}).subscribe((res: any) => {
+            this.http.put(this.baseUrl + subUrl, body, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).subscribe((res: any) => {
                 resolve(res);
             }, err => {
                 reject(err);
