@@ -27,7 +27,7 @@ export class CreateMeetingRequestComponent implements OnInit {
     this.todaysDate = this.todaysDate.split('T');
     this.selectedDate = this.todaysDate[0]
     console.log(this.selectedDate)
-    this.organizerEmail=sessionStorage.getItem('emailID');
+    this.organizerEmail = sessionStorage.getItem('emailID');
   }
 
   ngOnInit() {
