@@ -53,8 +53,8 @@
               <div class="col-sm-5">
                     <div class="row">
                         <div class="col-sm-12 disp-cen">
-                            <button type="button" class="btn btn-info" *ngIf="!isVirtualRoomCreated">Create Virtual room</button>
-                            <button type="button" class="btn btn-info" *ngIf="isVirtualRoomCreated">Join Virtual Room</button>
+                            <button type="button" class="btn btn-info" (click)="createRoom(meetingData)" >Create Virtual room</button>
+                            <!-- <button type="button" class="btn btn-info">Join Virtual Room</button> -->
                         </div>
                     </div>
                     <div class="row">
