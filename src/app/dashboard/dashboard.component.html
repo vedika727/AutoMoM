@@ -1,37 +1,39 @@
-  <nav class="navbar navbar-expand-sm bg-color d-flex">
-    <ul class="navbar-nav nav-content">
-      <li class="nav-item active col-6">
-        <a class="nav-link" href="#">
-          <header>
-              <h1 class="capcologo">CAPCO</h1>
-          </header>
-        </a>
-      </li>
-      <li class="logout justify-content-end col-6">
-        <a class="nav-link" href="" (click)="logout()">Logout</a>
-      </li>
-    </ul>
-  </nav>
- <!-- show date -->
- <div>
+<nav class="navbar navbar-expand-sm bg-color d-flex">
+  <ul class="navbar-nav nav-content">
+    <li class="nav-item active col-6">
+      <a class="nav-link" href="#">
+        <header>
+          <h1 class="capcologo">CAPCO</h1>
+        </header>
+      </a>
+    </li>
+    <li class="logout justify-content-end col-6">
+      <a class="nav-link" href="" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</nav>
+<!-- show date -->
+<div>
   <header>
-      <h1 class="up-meeting">Upcoming Meetings</h1>
+    <h1 class="up-meeting">Upcoming Meetings</h1>
   </header>
   <header>
-      <h2 class="date">{{dateNowISO | date: format}}</h2>
+    <h2 class="date">{{dateNowISO | date: format}}</h2>
   </header>
 </div>
- <!-- accordion start -->
- <div id="accordion" class="acc-block">
+<!-- accordion start -->
+<div id="accordion" class="acc-block">
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-primary collapsed create-meeting" data-toggle="collapse" data-target="#collapseThree" [routerLink]=" ['meetingRequest'] " aria-expanded="false" aria-controls="collapseThree">
-          <img src="../../assets/svg-icons/plus.svg" class="add-icon mr-2"/>Create Meeting Request
+        <button class="btn btn-primary collapsed create-meeting" data-toggle="collapse" data-target="#collapseThree"
+          [routerLink]=" ['meetingRequest'] " aria-expanded="false" aria-controls="collapseThree">
+          <img src="../../assets/svg-icons/plus.svg" class="add-icon mr-2" />Create Meeting Request
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse justify-content-center" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseThree" class="collapse justify-content-center" aria-labelledby="headingThree"
+      data-parent="#accordion">
       <router-outlet></router-outlet>
     </div>
   </div>
@@ -39,56 +41,59 @@
 <!-- card block start -->
 <div class="container-fluid">
   <div class="row m-none">
-      <div class="col-xs-12 col-md-6 main-card" *ngFor="let meetingData of data">
-        <div class="card">
-          <div class="card-body card-block">
-            <div class="row m-none">
-              <div class="col-sm-2 icon">
-                  <i class="fa fa-address-card-o" style="font-size:48px;color:black;"></i>
-              </div>
-              <div class="col-sm-5">
-                  <h2 class="font">{{meetingData.agenda}}</h2>
-                  <h1 class="heading">{{meetingData.location}}</h1>
-              </div>
-              <div class="col-sm-5">
-                    <div class="row">
-                        <div class="col-sm-12 disp-cen">
-                            <button type="button" class="btn btn-info" *ngIf="!isVirtualRoomCreated">Create Virtual room</button>
-                            <button type="button" class="btn btn-info" *ngIf="isVirtualRoomCreated">Join Virtual Room</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 edit-btn">
-                            <button type="button" class="btn btn-success edit-btn2">Edit</button>
-                        </div>
-                        <div class="col-sm-6 cancel-btn  p-left p--right">
-                            <button type="button" (click)="cancel(meetingData)" class="btn btn-danger">Cancel</button>
-                        </div>
-                    </div>
-              </div>
+    <div class="col-xs-12 col-md-6 main-card" *ngFor="let meetingData of data">
+      <div class="card">
+        <div class="card-body card-block">
+          <div class="row m-none">
+            <div class="col-sm-2 icon">
+              <i class="fa fa-address-card-o" style="font-size:48px;color:black;"></i>
             </div>
-            <div class="row m-none">
-              <div class="col-sm-4">
-                  <div class="card-time float-left">Date : 11 May 2019</div>
+            <div class="col-sm-5">
+              <h2 class="font">{{meetingData.agenda}}</h2>
+              <h1 class="heading">{{meetingData.location}}</h1>
+            </div>
+            <div class="col-sm-5">
+              <div class="row">
+                <div class="col-sm-12 disp-cen">
+                  <button type="button" class="btn btn-info" *ngIf="!isVirtualRoomCreated">Create Virtual room</button>
+                  <button type="button" class="btn btn-info" *ngIf="isVirtualRoomCreated" data-toggle="modal"
+                    data-target="#acceptTokenModal">Join Virtual Room</button>
+                </div>
               </div>
-              <div class="col-sm-4">
-                  <div class="card-time">Time : 2:30 AM</div>  
-              </div>
-              <div class="col-sm-4">
-                  <div class="card-time">
-                      <button type="button" class="btn btn-warning see-part" (click)="participants(meetingData)" data-toggle="modal" data-target="#listOfParticipants">
-                          See Participants 
-                      </button>
-                  </div>  
+              <div class="row">
+                <div class="col-sm-6 edit-btn">
+                  <button type="button" class="btn btn-success edit-btn2">Edit</button>
+                </div>
+                <div class="col-sm-6 cancel-btn  p-left p--right">
+                  <button type="button" (click)="cancel(meetingData)" class="btn btn-danger">Cancel</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>  
+          <div class="row m-none">
+            <div class="col-sm-4">
+              <div class="card-time float-left">Date : 11 May 2019</div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card-time">Time : 2:30 AM</div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card-time">
+                <button type="button" class="btn btn-warning see-part" (click)="participants(meetingData)"
+                  data-toggle="modal" data-target="#listOfParticipants">
+                  See Participants
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 </div>
 <!-- modal popup for list of participants -->
-<div class="modal fade" id="listOfParticipants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="listOfParticipants" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -107,4 +112,29 @@
     </div>
   </div>
 </div>
-    
+
+<!-- Accept Token Modal -->
+<div class="modal fade" id="acceptTokenModal" tabindex="-1" role="dialog" aria-labelledby="acceptTokenModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please enter token provided in your email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="joinVirtualRoom(joinVirtualRoomReqObj)" #acceptTokenForm="ngForm" novalidate>
+          <input type="text" class="form-control" [(ngModel)]="joinVirtualRoomReqObj.token" name="token" id="token"
+            placeholder="Enter Token Here" required>
+          <div class="justify-content-end d-flex">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Enter</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

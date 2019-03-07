@@ -4,6 +4,7 @@ import { IdDetails } from "../shared/models/auth-model";
 import { CancelMeeting } from "../shared/models/auth-model";
 import { AuthService } from "../core/services/authentication/auth";
 import { Router } from "@angular/router";
+import { JoinVirtualRoom } from "../shared/models/virtualRoom";
 
 @Component({
   selector: "app-dashboard",
@@ -11,6 +12,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
+  token:string
   emailData: IdDetails;
   cancelData: CancelMeeting;
   loginError: boolean = false;
@@ -22,6 +24,7 @@ export class DashboardComponent implements OnInit {
   dateNow: Date = new Date();
   dateNowISO = this.dateNow.toISOString();
   isVirtualRoomCreated: boolean = true
+  joinVirtualRoomReqObj: JoinVirtualRoom;
 
   constructor(
     public meetService: MeetingService,
@@ -30,6 +33,7 @@ export class DashboardComponent implements OnInit {
   ) {
     this.emailData = new IdDetails();
     this.cancelData = new CancelMeeting();
+    this.joinVirtualRoomReqObj = new JoinVirtualRoom();
   }
 
   ngOnInit() {
@@ -81,5 +85,10 @@ export class DashboardComponent implements OnInit {
   generateRandomNumber() {
     let r = Math.random().toString(36).substring(2);
     console.log("random", r);
+  }
+  joinVirtualRoom(joinVirtualRoomReqObj: JoinVirtualRoom){
+    this.joinVirtualRoomReqObj.email = this.emailData.email;
+    // this.joinVirtualRoomReqObj.token =  
+    console.log("joinVirtualRoomReqObj",this.joinVirtualRoomReqObj)
   }
 }
