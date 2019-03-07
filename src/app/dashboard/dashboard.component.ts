@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   formatsDateTest: string[] = ["dd/MM/yyyy"];
   dateNow: Date = new Date();
   dateNowISO = this.dateNow.toISOString();
+  isVirtualRoomCreated: boolean = true
 
   constructor(
     public meetService: MeetingService,
@@ -75,5 +76,10 @@ export class DashboardComponent implements OnInit {
         this.loginError = true;
       }
     );
+  }
+
+  generateRandomNumber() {
+    let r = Math.random().toString(36).substring(2);
+    console.log("random", r);
   }
 }
