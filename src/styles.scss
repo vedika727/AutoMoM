@@ -11,7 +11,9 @@
 .m-none {
     margin: 0px !important;
 }
-
+.pl-10{
+    padding-left: 10px !important;
+}
 /* You can add global styles to this file, and also import other style files */
 
 .form-main-block {
@@ -128,6 +130,7 @@
 .card-time {
     color: #a4b7e8;
     padding-top: 10px;
+    margin-left: -8px;
 }
 
 .join-meeting {
@@ -146,8 +149,8 @@
     justify-content: flex-end;
 }
 .edit-btn2{
-    padding-left: 23px !important;
-    padding-right: 23px !important;
+    padding-left: 22px !important;
+    padding-right: 17px !important;
 }
 
 .cancel-btn {
