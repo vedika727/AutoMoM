@@ -7,3 +7,20 @@ export class CreateMeetingPostData {
     agenda: string;
     location: string;
 }
+
+export class GetMeetingData { 
+    participantEmail: Array<string>;
+    organizerEmail: string;
+    meetingDate: string;
+    startTime: string;
+    endTime: string;
+    agenda: string;
+    location: string;
+    isVirtualRoomCreated: boolean = false;
+    _id: string;
+    token: string;
+}
+
+export class MeetingData {
+    meetingData: GetMeetingData[];
+}

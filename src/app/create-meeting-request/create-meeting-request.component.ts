@@ -46,8 +46,12 @@ export class CreateMeetingRequestComponent implements OnInit {
   }
 
   onDateSelect(event) {
-    console.log(event)
-    this.selectedDate = (event.year + "-" + event.month + "-" + event.day);
+    let day = event.day.toString();
+    let month = event.month.toString();
+    let year = event.month.toString();
+    day = day.length == 1 ? ("0"+day) : day;
+    month = month.length == 1 ? ("0"+month) : month;
+    this.selectedDate = (year + "-" + month + "-" + day);
     this.meetingRequest.controls["dateInput"].setValue(
       this.selectedDate
     );

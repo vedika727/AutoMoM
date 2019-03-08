@@ -7,8 +7,7 @@ import { CancelMeeting } from "../shared/models/auth-model";
 import { AuthService } from "../core/services/authentication/auth";
 import { Router } from "@angular/router";
 import { JoinVirtualRoom } from "../shared/models/virtualRoom";
-import * as $ from 'jquery';
-
+import { GetMeetingData, MeetingData } from "../shared/models/meeting.model";
 
 @Component({
   selector: "app-dashboard",
@@ -20,9 +19,9 @@ export class DashboardComponent implements OnInit {
   emailData: IdDetails;
   cancelData: CancelMeeting;
   createVRoom : createVirtualRoom;
-  data: Array<Object> = [];
-  createRoomData: Array<Object> = [];
-  randomToken: string = "";
+  data: MeetingData;
+  createRoomData : Array<Object> = [];
+  randomToken : string = "";
   participantEmail: Array<Object>;
   participantEmailModel: any = {};
   @Input() public user;
@@ -43,6 +42,7 @@ export class DashboardComponent implements OnInit {
     this.cancelData = new CancelMeeting();
     this.joinVirtualRoomReqObj = new JoinVirtualRoom();
     this.createVRoom = new createVirtualRoom();
+    this.data = new MeetingData();
   }
 
   ngOnInit() {
@@ -51,14 +51,16 @@ export class DashboardComponent implements OnInit {
   }
   
   getMeeting() {
-    this.data = [];
     this.emailData.email = sessionStorage.getItem("emailID");
     //console.log(this.emailData);
     this.meetService.getData(this.emailData).then(
       (res: any) => {
         if (res) {
-          this.data = res;
-          console.log("Get all meetings ", this.data);
+          this.data.meetingData = res;
+          console.log("Get all meetings ", this.data.meetingData);
+          // this.data.meetingData.forEach(user=>{
+          //     user['isVirtualRoomCreated'] = false
+          // })
         }
       },
       (err: any) => {
@@ -112,6 +114,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createRoom(cancelMeeting){
+    console.log("cancelMeeting",cancelMeeting)
     this.generateRandomNumber();
     this.createVRoom.id = cancelMeeting._id;
     this.createVRoom.token = this.randomToken;
@@ -121,7 +124,12 @@ export class DashboardComponent implements OnInit {
       (res: any) => {
         if (res) {
           this.createRoomData = res;
-          console.log("create room response ", this.createRoomData);
+          console.log("create room response ",this.createRoomData);
+          // this.data.meetingData.forEach(user=>{
+          //   if(user._id == this.createVRoom.id){
+          //     user['isVirtualRoomCreated'] = true
+          //   }
+          // })
         }
       },
       (err: any) => {
