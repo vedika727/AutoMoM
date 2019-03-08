@@ -28,6 +28,7 @@ export class CreateMeetingRequestComponent implements OnInit {
     this.selectedDate = this.todaysDate[0]
     console.log(this.selectedDate)
     this.organizerEmail = sessionStorage.getItem('emailID');
+    
   }
 
   ngOnInit() {
@@ -35,7 +36,7 @@ export class CreateMeetingRequestComponent implements OnInit {
       agenda: ['', [Validators.required, Validators.maxLength(40)]],
       orgEmail: [this.organizerEmail],
       parEmail: ['', this.validateParticipantEmail()],
-      dateInput: [this.selectedDate, Validators.required],
+      dateInput: ['', Validators.required],
       stime: ['', Validators.required],
       etime: ['', Validators.required],
       location: ['', Validators.required]
@@ -43,19 +44,6 @@ export class CreateMeetingRequestComponent implements OnInit {
     );
     console.log("meeting request", this.meetingRequest)
     this.request = this.meetingRequest.controls
-  }
-
-  onDateSelect(event) {
-    let day = event.day.toString();
-    let month = event.month.toString();
-    let year = event.month.toString();
-    day = day.length == 1 ? ("0"+day) : day;
-    month = month.length == 1 ? ("0"+month) : month;
-    this.selectedDate = (year + "-" + month + "-" + day);
-    this.meetingRequest.controls["dateInput"].setValue(
-      this.selectedDate
-    );
-    console.log(this.meetingRequest.value.dateInput)
   }
 
   addParticipant(email) {
@@ -89,7 +77,7 @@ export class CreateMeetingRequestComponent implements OnInit {
     const startTime = (this.meetingRequest.value.stime.hour + ":" + this.meetingRequest.value.stime.minute + ":" + this.meetingRequest.value.stime.second)
     this.createMeetingData.participantEmail = this.emailArr;
     this.createMeetingData.organizerEmail = this.meetingRequest.value.orgEmail
-    this.createMeetingData.meetingDate = this.selectedDate;
+    this.createMeetingData.meetingDate = this.meetingRequest.value.dateInput;
     this.createMeetingData.endTime = endTime;
     this.createMeetingData.startTime = startTime;
     this.createMeetingData.agenda = this.meetingRequest.value.agenda;
