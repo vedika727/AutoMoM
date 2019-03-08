@@ -41,7 +41,7 @@
 <!-- card block start -->
 <div class="container-fluid">
   <div class="row m-none">
-    <div class="col-xs-12 col-md-6 main-card" *ngFor="let meetingData of data">
+    <div class="col-xs-12 col-md-6 main-card" *ngFor="let meetingData of data.meetingData">
       <div class="card">
         <div class="card-body card-block">
           <div class="row m-none">
@@ -54,14 +54,14 @@
             </div>
             <div class="col-sm-5">
               <div class="row">
-                <div class="col-sm-12 disp-cen" *ngIf="meetingData.organizerEmail == emailData.email">
-                  <button type="button" class="btn btn-info" (click)="createRoom(meetingData)" *ngIf="!isVirtualRoomCreated">Create Virtual
+                <div class="col-sm-12 disp-cen">
+                  <button type="button" class="btn btn-info" (click)="createRoom(meetingData)" *ngIf="!meetingData.token && meetingData.organizerEmail == emailData.email && !meetingData.isVirtualRoomCreated">Create Virtual
                     room</button>
-                  <button type="button" class="btn btn-info" *ngIf="isVirtualRoomCreated" data-toggle="modal"
+                  <button type="button" class="btn btn-info" *ngIf="(meetingData.organizerEmail != emailData.email) || meetingData.token" data-toggle="modal"
                     data-target="#acceptTokenModal" (click)="sendDetailsToTokenModal(meetingData)">Join Virtual Room</button>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="meetingData.organizerEmail == emailData.email">
                 <div class="col-sm-6 edit-btn">
                   <button type="button" class="btn btn-success edit-btn2">Edit</button>
                 </div>
@@ -131,7 +131,7 @@
             placeholder="Enter Token Here" required>
           <div class="justify-content-end d-flex">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Enter</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal">Enter</button>
           </div>
         </form>
       </div>

@@ -42,11 +42,9 @@ export class RegisterComponent implements OnInit {
     this.registrationData.password=this.userForm.cnfPassword.value;
     this.authService.registerUser(this.registrationData).then((res:any)=>{
       console.log(res)
-      debugger
       this.successfullyRegistered = true
       },
     (err:any)=>{
-      debugger
       console.log(err)  
       this.unsuccessfullRegistration = true
     })
