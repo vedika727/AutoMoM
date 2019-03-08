@@ -6,6 +6,9 @@ import { createVirtualRoom } from "../shared/models/virtualRoom";
 import { CancelMeeting } from "../shared/models/auth-model";
 import { AuthService } from "../core/services/authentication/auth";
 import { Router } from "@angular/router";
+import { JoinVirtualRoom } from "../shared/models/virtualRoom";
+import * as $ from 'jquery';
+
 
 @Component({
   selector: "app-dashboard",
@@ -13,10 +16,10 @@ import { Router } from "@angular/router";
   styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
+  token:string
   emailData: IdDetails;
   cancelData: CancelMeeting;
-  createVRoom: createVirtualRoom;
-  loginError: boolean = false;
+  createVRoom : createVirtualRoom;
   data: Array<Object> = [];
   createRoomData: Array<Object> = [];
   randomToken: string = "";
@@ -26,7 +29,9 @@ export class DashboardComponent implements OnInit {
   formatsDateTest: string[] = ["dd/MM/yyyy"];
   dateNow: Date = new Date();
   dateNowISO = this.dateNow.toISOString();
-  isVirtualRoomCreated: boolean = true;
+  isVirtualRoomCreated: boolean = false
+  joinVirtualRoomReqObj: JoinVirtualRoom;
+  meetingId: any;
 
   constructor(
     public meetService: MeetingService,
@@ -36,6 +41,7 @@ export class DashboardComponent implements OnInit {
   ) {
     this.emailData = new IdDetails();
     this.cancelData = new CancelMeeting();
+    this.joinVirtualRoomReqObj = new JoinVirtualRoom();
     this.createVRoom = new createVirtualRoom();
   }
 
@@ -43,6 +49,7 @@ export class DashboardComponent implements OnInit {
     this.getMeeting();
     //console.log(this.data);
   }
+  
   getMeeting() {
     this.data = [];
     this.emailData.email = sessionStorage.getItem("emailID");
@@ -56,7 +63,6 @@ export class DashboardComponent implements OnInit {
       },
       (err: any) => {
         console.log(err);
-        this.loginError = true;
       }
     );
   }
@@ -80,21 +86,37 @@ export class DashboardComponent implements OnInit {
       },
       (err: any) => {
         console.log(err);
-        this.loginError = true;
       }
     );
   }
 
   generateRandomNumber() {
-    this.randomToken = Math.random()
-      .toString(36)
-      .substring(2);
-    // console.log("random", r);
+    this.randomToken = Math.random().toString(36).substring(2);
+    console.log("random", this.randomToken);
+  }
+  sendDetailsToTokenModal(meetingData:any ){
+    console.log("sendDetailsToTokenModal",meetingData)
+    this.meetingId=meetingData._id
+    this.joinVirtualRoomReqObj.id = meetingData._id;
+    this.joinVirtualRoomReqObj.email = meetingData.organizerEmail;
+  }
+  joinVirtualRoom(joinVirtualRoomReqObj: JoinVirtualRoom){
+    console.log("meetingId",this.meetingId)
+    console.log("joinVirtualRoomReqObj",this.joinVirtualRoomReqObj)
+    this.virtualService.joinVirtualRoom(this.joinVirtualRoomReqObj).then((res:any)=>{
+      console.log(res);
+    },
+    (err:any)=>{
+      console.log(err)
+    })
   }
 
-  createRoom(cancelMeeting) {
+  createRoom(cancelMeeting){
+    this.generateRandomNumber();
     this.createVRoom.id = cancelMeeting._id;
     this.createVRoom.token = this.randomToken;
+    console.log("random token",this.randomToken)
+    console.log(this.createVRoom)
     this.virtualService.createVirtualRoom(this.createVRoom).then(
       (res: any) => {
         if (res) {
@@ -104,7 +126,6 @@ export class DashboardComponent implements OnInit {
       },
       (err: any) => {
         console.log(err);
-        this.loginError = true;
       }
     );
   }
