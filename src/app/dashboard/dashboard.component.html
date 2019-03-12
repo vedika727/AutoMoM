@@ -126,12 +126,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="joinVirtualRoom(joinVirtualRoomReqObj)" #acceptTokenForm="ngForm" novalidate>
+        <form #acceptTokenForm="ngForm" novalidate>
           <input type="text" class="form-control" [(ngModel)]="joinVirtualRoomReqObj.token" name="token" id="token"
             placeholder="Enter Token Here" required>
           <div class="justify-content-end d-flex">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" data-dismiss="modal">Enter</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal"   (click)="joinVirtualRoom(joinVirtualRoomReqObj)">Enter</button>
           </div>
         </form>
       </div>

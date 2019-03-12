@@ -103,10 +103,13 @@ export class DashboardComponent implements OnInit {
     this.joinVirtualRoomReqObj.email = meetingData.organizerEmail;
   }
   joinVirtualRoom(joinVirtualRoomReqObj: JoinVirtualRoom){
+    debugger
     console.log("meetingId",this.meetingId)
     console.log("joinVirtualRoomReqObj",this.joinVirtualRoomReqObj)
     this.virtualService.joinVirtualRoom(this.joinVirtualRoomReqObj).then((res:any)=>{
       console.log(res);
+      if(res)
+      this.router.navigate(["/speechRecognition"]);
     },
     (err:any)=>{
       console.log(err)
