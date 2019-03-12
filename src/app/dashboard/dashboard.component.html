@@ -103,9 +103,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body mb-20">
         <div>
-          <ul class="list-group" *ngFor="let modelData of participantEmailModel.participantEmail">
+          <ul class="mt-20 list-group" *ngFor="let modelData of participantEmailModel.participantEmail">
             <li class="list-group-item">{{modelData}}</li>
           </ul>
         </div>
@@ -129,13 +129,13 @@
         <form #acceptTokenForm="ngForm" novalidate>
           <input type="text" class="form-control" [(ngModel)]="joinVirtualRoomReqObj.token" name="token" id="token"
             placeholder="Enter Token Here" required>
+            {{ joinVirtualRoomReqObj.token }}
           <div class="justify-content-end d-flex">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary" data-dismiss="modal"   (click)="joinVirtualRoom(joinVirtualRoomReqObj)">Enter</button>
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>
