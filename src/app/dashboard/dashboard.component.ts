@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   isVirtualRoomCreated: boolean = false
   joinVirtualRoomReqObj: JoinVirtualRoom;
   meetingId: any;
+  activeMeetings: Array<Object> = [];
 
   constructor(
     public meetService: MeetingService,
@@ -52,6 +53,7 @@ export class DashboardComponent implements OnInit {
   
   getMeeting() {
     this.emailData.email = sessionStorage.getItem("emailID");
+    this.activeMeetings = [];
     //console.log(this.emailData);
     this.meetService.getData(this.emailData).then(
       (res: any) => {
@@ -61,6 +63,12 @@ export class DashboardComponent implements OnInit {
           // this.data.meetingData.forEach(user=>{
           //     user['isVirtualRoomCreated'] = false
           // })
+          this.data.meetingData.forEach(meeting => {
+            if(meeting.status == 'y') {
+              this.activeMeetings.push(meeting);
+            }
+          });
+          console.log('Active Meetings:', this.activeMeetings);
         }
       },
       (err: any) => {

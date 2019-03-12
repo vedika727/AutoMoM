@@ -19,6 +19,7 @@ export class GetMeetingData {
     isVirtualRoomCreated: boolean = false;
     _id: string;
     token: string;
+    status: string
 }
 
 export class MeetingData {

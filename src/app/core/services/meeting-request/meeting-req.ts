@@ -34,7 +34,7 @@ export class MeetingService {
   // cancle Meeting
   cancelData(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.httpPut("meeting/update", data).then(
+      this.http.httpPut("meeting/cancel", data).then(
         res => {
           resolve(res);
         },
