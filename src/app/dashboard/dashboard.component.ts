@@ -8,7 +8,6 @@ import { AuthService } from "../core/services/authentication/auth";
 import { Router } from "@angular/router";
 import { JoinVirtualRoom } from "../shared/models/virtualRoom";
 import { GetMeetingData, MeetingData } from "../shared/models/meeting.model";
-import * as $ from 'jquery';
 
 @Component({
   selector: "app-dashboard",
