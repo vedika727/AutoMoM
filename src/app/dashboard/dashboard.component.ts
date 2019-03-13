@@ -58,11 +58,8 @@ export class DashboardComponent implements OnInit {
     this.meetService.getData(this.emailData).then(
       (res: any) => {
         if (res) {
-          this.data.meetingData = res;
+          this.data.meetingData = res.meetings;
           console.log("Get all meetings ", this.data.meetingData);
-          // this.data.meetingData.forEach(user=>{
-          //     user['isVirtualRoomCreated'] = false
-          // })
           this.data.meetingData.forEach(meeting => {
             if(meeting.status == 'y') {
               this.activeMeetings.push(meeting);
@@ -115,9 +112,14 @@ export class DashboardComponent implements OnInit {
     console.log("meetingId",this.meetingId)
     console.log("joinVirtualRoomReqObj",this.joinVirtualRoomReqObj)
     this.virtualService.joinVirtualRoom(this.joinVirtualRoomReqObj).then((res:any)=>{
-      console.log(res);
-      if(res)
-      this.router.navigate(["/speechRecognition"]);
+      if(res.status == 'C') {
+        console.log(res);
+        if(res)
+        this.router.navigate(["/speechRecognition"]);
+      }
+      else{
+        console.log(res.error[0].msg);
+      }
     },
     (err:any)=>{
       console.log(err)
