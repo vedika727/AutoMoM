@@ -1,3 +1,7 @@
+// import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from '../core/services/web-sockets/web-socket';
+import { Message } from '../shared/models/messages.model';
+import { Event } from '../shared/models/events.model';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SpeechNotification } from '../shared/models/speech-models/speech-notification';
 import { SpeechError } from '../shared/models/speech-models/speech-error';
@@ -10,22 +14,58 @@ import { SpeechRecognizerService } from '../core/services/speech-services/speech
   styleUrls: ['./speech-recognition.component.scss']
 })
 export class SpeechRecognitionComponent implements OnInit {
-
+  ioConnection: any;
+  messages: Message[] = []
+  event: Event
+  message: string
   finalTranscript = '';
   recognizing = false;
   notification: string;
-  languages: string[] =  ['en-US', 'es-ES'];
+  languages: string[] = ['en-US', 'es-ES'];
   currentLanguage: string;
-  actionContext: ActionContext = new ActionContext();
 
-  constructor(private changeDetector: ChangeDetectorRef,
-              private speechRecognizer: SpeechRecognizerService) { }
+  actionContext: ActionContext = new ActionContext();
+  constructor(private socketService: WebSocketService,
+    private changeDetector: ChangeDetectorRef,
+    private speechRecognizer: SpeechRecognizerService) {
+    this.event = new Event()
+  }
 
   ngOnInit() {
-    this.currentLanguage = this.languages[0];
+    this.initIoConnection();
+    this.currentLanguage = 'en-US';
     this.speechRecognizer.initialize(this.currentLanguage);
     this.initRecognition();
     this.notification = null;
+  }
+
+  initIoConnection(): void {
+    this.socketService.initSocket();
+
+    this.ioConnection = this.socketService.onMessage()
+      .subscribe((message: Message) => {
+        this.messages.push(message);
+        // console.log(this.messages)
+      });
+
+
+    this.socketService.onEvent(this.event.CONNECT)
+      .subscribe(() => {                                                                                                        
+        console.log('connected to socket');
+      });
+
+    this.socketService.onEvent(this.event.DISCONNECT)
+      .subscribe(() => {
+        console.log('disconnected');
+      });
+  }
+  
+  sendMessage(message: any): void {
+    this.socketService.send(message);
+  }
+
+  getTimeStamp() {
+    return new Date();
   }
 
   startButton(event) {
@@ -69,7 +109,8 @@ export class SpeechRecognitionComponent implements OnInit {
           this.actionContext.processMessage(message, this.currentLanguage);
           this.detectChanges();
           this.actionContext.runAction(message, this.currentLanguage);
-          console.log('Output - ', this.finalTranscript);
+          this.sendMessage(message);
+          console.log('message: ',message);
         }
       });
 
