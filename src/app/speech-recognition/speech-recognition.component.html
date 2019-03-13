@@ -1,3 +1,10 @@
-<p>
-  speech-recognition works!
-</p>
+<div *ngFor="let message of messages">
+  {{message.name}}: {{message.message}}
+</div>
+<div>
+  <form class="form-group" (ngSubmit)="sendMessage(message)">
+    <input class="form-control" #inputMessage [(ngModel)]="message" name="message">
+    <div align="end">{{inputMessage.value.length}}/140</div>
+    <button class="btn btn-primary" type="submit">Enter</button>
+  </form>
+</div>

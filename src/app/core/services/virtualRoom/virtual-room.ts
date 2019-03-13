@@ -3,6 +3,7 @@ import { HttpService } from "../http/http-service";
 
 @Injectable()
 export class VirtualRoomService {
+  meetingID: string;
   constructor(private http: HttpService) {}
 
   // create VirtualRoomService
@@ -31,5 +32,13 @@ export class VirtualRoomService {
         }
       );
     });
+  }
+
+  setMeetingId(ID: any){
+    this.meetingID=''
+  }
+
+  getMeetingId(){
+    return this.meetingID;
   }
 }
