@@ -63,7 +63,7 @@
               </div>
               <div class="row pl-10" *ngIf="meetingData.organizerEmail == emailData.email">
                 <div class="col-sm-6 edit-btn">
-                  <button type="button" class="btn btn-success edit-btn2">Edit</button>
+                  <button type="button" data-toggle="modal" data-target="#editMeetingModal" class="btn btn-success edit-btn2">Edit</button>
                 </div>
                 <div class="col-sm-6 cancel-btn  p-left p--right">
                   <button type="button" (click)="cancel(meetingData)" class="btn btn-danger">Cancel</button>
@@ -134,6 +134,26 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary" data-dismiss="modal"   (click)="joinVirtualRoom(joinVirtualRoomReqObj)">Enter</button>
           </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Meeting Modal -->
+<div class="modal fade" id="editMeetingModal" tabindex="-1" role="dialog" aria-labelledby="acceptTokenModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Meeting</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editMeetingModal="ngForm" novalidate>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia impedit, quisquam sunt doloribus laborum nemo error odit tenetur culpa! Porro delectus consequatur magni sapiente unde rem a assumenda at pariatur.</p>
         </form>
       </div>
     </div>
