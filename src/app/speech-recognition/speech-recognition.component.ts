@@ -49,7 +49,7 @@ export class SpeechRecognitionComponent implements OnInit {
       return;
     }
     this.socketService.send({
-      name:'vedika',
+      name: sessionStorage.getItem("emailID"),
       message: message
     });
     // this.messageContent = null;
