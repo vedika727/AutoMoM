@@ -13,7 +13,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { CreateMeetingRequestComponent } from './create-meeting-request/create-meeting-request.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SpeechRecognitionComponent } from './speech-recognition/speech-recognition.component';
+import { WebSpeechModule } from './speech-recognition/speech-recognition.module';
 
 const appRoutes: Routes = [
   // {path: 'home', component: AppComponent},
@@ -28,7 +28,6 @@ const appRoutes: Routes = [
     DashboardComponent,
     AuthenticationComponent,
     CreateMeetingRequestComponent,
-    SpeechRecognitionComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +37,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     AppRoutingModule ,
     RouterModule.forRoot(appRoutes),
-    NgbModule
+    NgbModule,
+    WebSpeechModule
   ],
   providers: [],
   bootstrap: [AppComponent],

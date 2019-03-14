@@ -3,6 +3,7 @@ import { HttpService } from './services/http/http-service';
 import { AuthService } from './services/authentication/auth';
 import { MeetingService } from "src/app/core/services/meeting-request/meeting-req";
 import { VirtualRoomService } from "src/app/core/services/virtualRoom/virtual-room";
+import { WebSocketService } from './services/web-sockets/web-socket';
 
 
 
@@ -15,7 +16,7 @@ import { VirtualRoomService } from "src/app/core/services/virtualRoom/virtual-ro
         AuthService,
         MeetingService,
         VirtualRoomService,
-
+        WebSocketService
     ],
 })
 export class CoreModule {
