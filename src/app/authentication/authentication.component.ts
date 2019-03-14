@@ -11,7 +11,7 @@ export class AuthenticationComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private router: Router) { 
+    public router: Router) { 
     
   }
 
